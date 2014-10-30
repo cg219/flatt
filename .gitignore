@@ -13,6 +13,10 @@ build/*
 *.xcworkspace
 xcuserdata
 
+# node noise
+node_modules
+node_modules/*
+
 # svn & cvs
 .svn
 CVS

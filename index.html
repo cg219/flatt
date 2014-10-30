@@ -7,12 +7,25 @@
 </head>
 
 <body>
-	<video class="background" width="100%" height="100%" loop autoplay>
-		<source src="assets/videos/7792013.mp4" type="video/mp4" />
-	</video>
+	<div class="background">
+		<div class="videoOverlay"></div>
+		<video class="backgroundVideo" width="100%" height="100%" loop autoplay>
+			<source src="assets/videos/7792013.mp4" type="video/mp4" />
+		</video>
+	</div>
 	
 	<div class="wrap">
-		<header class="siteHeader"></header>
+		<header class="siteHeader">
+			<a href="/" class="logo"><img src="assets/images/logo.png" alt=""></a>
+			<nav class="topNav">
+				<ul>
+					<li><a href="/projects">Projects</a></li>
+					<li><a href="/montage">Montage</a></li>
+					<li><a href="/about">About</a></li>
+					<li><a href="/contact">Contact</a></li>
+				</ul>
+			</nav>
+		</header>
 		<section class="content">
 			<ul>
 				<li><img src="assets/images/1.jpg" alt=""></li>
