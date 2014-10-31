@@ -19,7 +19,9 @@ module.exports = function(grunty){
     },
     uglify: {
       options: {
-        mangle: false
+        mangle: false,
+        sourceMap: true,
+        sourceMapName: "main.min.map"
       },
       libs: {
         files: {
