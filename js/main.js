@@ -1,52 +1,75 @@
 (function(){
-	var content = document.querySelector(".content");
-	var videos = [
-	"110520891",
-	"110531415",
-	"110526958",
-	"110522221",
-	"110527224",
-	"110527538",
-	"110536700",
-	"110535061",
-	"110534367",
-	"110528974"];
+	var flatt = angular.module("flatt", ["ui.router", "ngSanitize"]);
+	flatt.config(["$locationProvider", "$stateProvider", "$urlRouterProvider", function(loc, state, url){
+		loc.html5Mode(false);
 
-	var player = new DOMParser().parseFromString(iframe, "text/html").querySelector("iframe");
+		state
+			.state("home", {
+				url: "/",
+				controller: "Home",
+				params: {},
+				templateUrl: "home.html"
+			})
+			.state("stills", {
+				url: "#/stills",
+				controller: "Stills",
+				params: {},
+				templateUrl: "stills.html"
+			})
+	}])
 
-	function makePlayers(videos){
-		var i = 0;
-		var li;
-		var url;
-		var currentPlayer;
+	flatt
+		.controller("Main", ["$scope", function(scope){
+			scope.showLightbox = false;
+		}])
+		.controller("Home", ["$scope", "$sce", function(scope, sce){
+			scope.videos = [
+				"110520891",
+				"110531415",
+				"110526958",
+				"110522221",
+				"110527224",
+				"110527538",
+				"110536700",
+				"110535061",
+				"110534367",
+				"110528974"];
 
-		for(i; i < videos.length; i++){
-			currentPlayer = player.cloneNode();
-			li = document.createElement("li");
-			url = currentPlayer.getAttribute("src") + videos[i];
-			currentPlayer.setAttribute("src", url);
-
-			li.appendChild(currentPlayer);
-			content.querySelector("ul").appendChild(li);
-		}
-	}
-
-	function onResize(){
-		var lis = content.querySelectorAll("li");
-
-		if(lis.length > 0){
-			var i = 0;
-			var newHeight = (content.offsetWidth * .56) + "px";
-
-			for(i; i < lis.length; i++){
-				lis[i].style.height = newHeight;
+			scope.getVimeoLink = function(id){
+				return sce.trustAsResourceUrl("//player.vimeo.com/video/" + id);
 			}
-		}
-	}
 
-	window.addEventListener("resize", onResize);
+			console.log(scope);
+		}])
+		.controller("Stills", ["$scope", "$http", function(scope, http){
+			scope.thumbs = [];
+			scope.mainImage = "";
+			scope.switchImage = function(item){
+				scope.mainImage = item;
+			}
 
-	makePlayers(videos);
-	onResize();
+			http.get("/gallery.json")
+				.then(function(data){
+					console.log(data)
+					scope.thumbs = data.data;
+					scope.mainImage = data.data[0];
+				}, function(err){
+					console.error(err);
+				})
+
+
+		}])
+		.directive("resize", ["$window", function(win){
+			return {
+				link: function(scope, element){
+					var newHeight = element.parent().parent()[0].offsetWidth * .56;
+					element.css("height", newHeight + "px");
+
+					// win.bind("resize", function(){
+					// 	scope.$apply();
+					// })
+				}
+			}
+		}])
 
 })();

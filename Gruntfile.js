@@ -2,7 +2,7 @@ var path = require("path");
 
 module.exports = function(grunty){
 
-  var bowerScripts = [];
+  var bowerScripts = ["bower_components/angular/angular.min.js", "bower_components/angular-ui-router/release/angular-ui-router.min.js", "bower_components/angular-sanitize/angular-sanitize.min.js"];
   var uglifyScripts = ["js/main.js"];
 
   grunty.initConfig({
@@ -25,7 +25,8 @@ module.exports = function(grunty){
       },
       libs: {
         files: {
-          "js/min/main.min.js" : uglifyScripts
+          "js/min/main.min.js" : uglifyScripts,
+          "js/min/vendor.min.js" : bowerScripts
         }
       }
     },

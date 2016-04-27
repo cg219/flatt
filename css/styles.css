@@ -370,6 +370,10 @@ body {
   /* background-color: #232323; */
   background-repeat: no-repeat;
 }
+html.lightbox-open,
+body.lightbox-open {
+  overflow: hidden;
+}
 a {
   color: #808284;
 }
@@ -436,15 +440,21 @@ a.active {
   /* background-color: ; */
   background-color: #000000;
   height: 90px;
-  width: 866px;
+  width: 100%;
   float: right;
   margin-bottom: 40px;
+  margin-top: 50px;
   position: fixed;
+  z-index: 10;
+}
+.siteHeader .wrap {
+  padding: 0;
+  position: relative;
 }
 .siteHeader:before {
   content: "";
   height: 50px;
-  width: 866px;
+  width: 100%;
   background: #000000;
   display: block;
   margin-top: -50px;
@@ -452,7 +462,7 @@ a.active {
 .siteHeader:after {
   content: "";
   height: 10px;
-  width: 866px;
+  width: 100%;
   /* background: #232323; */
   background: #000000;
   display: block;
@@ -525,4 +535,49 @@ a.active {
 }
 .content ul li img {
   width: 100%;
+}
+.lightbox {
+  opacity: 0;
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow: scroll;
+  width: 100vw;
+  height: 100%;
+  z-index: 100;
+  background: rgba(0, 0, 0, 0.9);
+  cursor: pointer;
+}
+.lightbox.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+.lightbox img {
+  width: 100%;
+  height: auto;
+}
+.main-image {
+  height: 400px;
+  overflow: hidden;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+.main-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+ul.thumbs li.thumb {
+  width: 100px;
+  height: 100px;
+  float: left;
+  overflow: hidden;
+  margin-right: 10px;
+  cursor: pointer;
+}
+ul.thumbs li.thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }

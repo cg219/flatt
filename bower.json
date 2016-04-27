@@ -1,0 +1,24 @@
+{
+  "name": "PeteFlatt",
+  "description": "Pete Flatt Sites",
+  "main": "",
+  "authors": [
+    "Clemente Gomez"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/cg219/flatt",
+  "moduleType": [],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.5.5",
+    "angular-ui-router": "ui-router#~0.2.18",
+    "angular-sanitize": "~1.5.5"
+  }
+}

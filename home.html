@@ -1,0 +1,9 @@
+<div class="wrap">
+	<section class="content">
+	  <ul>
+	  	<li ng-repeat="video in videos" resize>
+	  		<iframe src="{{getVimeoLink(video)}}" width="100%" height="100%" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+	  	</li>
+	  </ul>
+	</section>
+</div>

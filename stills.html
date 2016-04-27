@@ -1,0 +1,15 @@
+<div class="wrap">
+	<section class="content">
+	  <div class="main-image" ng-click="$parent.showLightbox = true">
+	  	<img src="{{mainImage.image}}" alt="">
+	  </div>
+	  <ul class="thumbs">
+	  	<li class="thumb" ng-repeat="thumb in thumbs" ng-click="switchImage(thumb)">
+	  		<img src="{{thumb.image}}" alt="">
+	  	</li>
+	  </ul>
+	</section>
+</div>
+<div class="lightbox" ng-class="{open:showLightbox}" ng-click="$parent.showLightbox = false;">
+	<img src="{{mainImage.image}}" alt="">
+</div>
