@@ -1,7 +1,9 @@
 (function(){
 	var flatt = angular.module("flatt", ["ui.router", "ngSanitize"]);
 	flatt.config(["$locationProvider", "$stateProvider", "$urlRouterProvider", function(loc, state, url){
-		loc.html5Mode(false);
+		loc.html5Mode(true);
+
+		url.otherwise("/");
 
 		state
 			.state("home", {
@@ -11,7 +13,7 @@
 				templateUrl: "home.html"
 			})
 			.state("stills", {
-				url: "#/stills",
+				url: "/stills",
 				controller: "Stills",
 				params: {},
 				templateUrl: "stills.html"
@@ -48,7 +50,7 @@
 				scope.mainImage = item;
 			}
 
-			http.get("/gallery.json")
+			http.get("gallery.json")
 				.then(function(data){
 					console.log(data)
 					scope.thumbs = data.data;
